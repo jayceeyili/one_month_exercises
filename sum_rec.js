@@ -3,7 +3,7 @@
 *****************************************************************************************/
 
 const sum_rec = arr => {
-  if (arr.length === 0) return 0;
+  if (!arr.length) return 0;
   return arr[0] + sum_rec(arr.slice(1));
 };
 
