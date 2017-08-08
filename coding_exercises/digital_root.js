@@ -6,9 +6,11 @@
 *****************************************************************************************/
 
 const digital_root = number => {
-  if (number < 10) return number;
+  while (number > 10) {
+    number = adding_digit(number);
+  }
 
-  return adding_digit(number);
+  return number;
 };
 
 const adding_digit = digit => {
@@ -26,4 +28,4 @@ const adding_digit = digit => {
   // return parseInt(digit % 10) + adding_digit(parseInt(digit / 10));
 };
 
-console.log(digital_root(91023));
+console.log(digital_root(999999));
