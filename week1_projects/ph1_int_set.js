@@ -135,8 +135,49 @@ class IntSet {
   numBuckets() {
     return this._storge.length;
   }
+}
 
-  data() {
-    return this._storge;
+class ResizingIntSet {
+  constructor(numBuckets = 20) {
+    this._storge = new Array(numBuckets).fill([]).map(ele => ele = []);
+    this._count = 0;
+  }
+
+  insert(num) {
+    if (!this.include(num)) {
+      this._bucket(num).push(num);
+      this._count++;
+    }
+
+    if (this._count >= this.numBuckets()) {
+      this.resize();
+    }
+  }
+
+  remove(num) {
+    if (this.include(num)) {
+      this._bucket(num).splice(this._bucket(num).indexOf(num), 1);
+    }
+  }
+
+  include(num) {
+    return this._bucket(num).indexOf(num) !== -1 ? true : false;
+  }
+
+  _bucket(num) {
+    return this._storge[num % this.numBuckets()];
+  }
+
+  numBuckets() {
+    return this._storge.length;
+  }
+
+  resize() {
+    let oldStorge = this._storge;
+    this._count = 0;
+    this._storge = new Array(oldStorge.length * 2).fill([]).map(ele => ele = []);
+    oldStorge.forEach(bucket => {
+      bucket.forEach(ele => this.insert(ele));
+    })
   }
 }
