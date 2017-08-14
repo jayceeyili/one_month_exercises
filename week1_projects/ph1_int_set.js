@@ -71,3 +71,72 @@
     - What are the time complexities of the operations of your set
       implementation?
 ***************************************************************************************************/
+class MaxIntSet {
+  constructor(max) {
+    this._max = max;
+    this._storge = new Array(max).fill(false);
+  }
+
+  insert(num) {
+    this._validate(num);
+    this._storge[num] = true;
+  }
+
+  remove(num) {
+    this._validate(num);
+    if (this._storge[num]) {
+      this._storge[num] = false;
+    } else {
+      throw Error(`${num} does not exist`);
+    }
+  }
+
+  include(num) {
+    this._validate(num);
+    return this._storge[num];
+  }
+
+  _isValid(num) {
+    return num < this._max;
+  }
+
+  _validate(num) {
+    if (!this._isValid(num)) {
+      throw Error(`${num} out of range`);
+    }
+  }
+}
+
+class IntSet {
+  constructor(numBuckets = 20) {
+    this._storge = new Array(numBuckets).fill([]).map(ele => ele = []);
+  }
+
+  insert(num) {
+    if (!this.include(num)) {
+      return this._bucket(num).push(num);
+    }
+  }
+
+  remove(num) {
+    if (this.include(num)) {
+      this._bucket(num).splice(this._bucket(num).indexOf(num), 1);
+    }
+  }
+
+  include(num) {
+    return this._bucket(num).indexOf(num) !== -1 ? true : false;
+  }
+
+  _bucket(num) {
+    return this._storge[num % this.numBuckets()];
+  }
+
+  numBuckets() {
+    return this._storge.length;
+  }
+
+  data() {
+    return this._storge;
+  }
+}
