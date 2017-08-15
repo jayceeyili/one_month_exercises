@@ -5,3 +5,15 @@
   4 in 18 odds, index 1 should be returned with 6 in 18 odds, and index 2 should be return with
   8 in 18 odds. Implement this in O(n) time.+
 ***************************************************************************************************/
+
+const weighted_random_index = arr => {
+  let sum = arr.reduce((a, b) => a + b);
+  let helperArr = [];
+  arr.forEach((ele, i) => {
+    helperArr = [...helperArr, ...new Array(ele).fill(i)];
+  })
+  let index = parseInt(Math.random() * sum);
+  return helperArr[index];
+};
+
+console.log(weighted_random_index([4, 6, 8]));
