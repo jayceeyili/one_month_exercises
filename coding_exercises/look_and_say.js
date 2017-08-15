@@ -15,3 +15,20 @@
   # array
   look_and_say([1, 2, 1, 1]) == [[1, 1], [1, 2], [2, 1]]
 ***************************************************************************************************/
+
+const look_and_say = arr => {
+  let result = [];
+
+  arr.forEach(ele => {
+    let len = result.length;
+    if (!len || result[len - 1][1] !== ele) {
+      result.push([1, ele]);
+    } else {
+      result[len - 1][0]++;
+    }
+  })
+
+  return result;
+};
+
+console.log(look_and_say([1, 2, 1, 1]));
