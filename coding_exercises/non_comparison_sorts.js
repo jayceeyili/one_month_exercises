@@ -16,3 +16,16 @@ const non_comparison_sort1 = (arr, n) => {
   }
   return result;
 };
+
+const non_comparison_sort2 = (arr, N) => {
+  let counts = new Array(N + 1).fill(false);
+  arr.forEach(ele => counts[ele] = !counts[ele]);
+
+  let result = [];
+  for (let k = 0; k < N + 1; k++) {
+    if (counts[k]) {
+      result.push(k);
+    }
+  }
+  return result;
+};
