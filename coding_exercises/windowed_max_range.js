@@ -14,3 +14,21 @@
   Next, solve StackQueue. Could you use your MinMaxStack to write a MinMaxStackQueue which tracks both the min and max.
   Last, can you use your MinMaxStackQueue to solve the problem?
 ***************************************************************************************************/
+
+const windowed_max_range = (arr, w) => {
+  let max = null;
+
+  let queue = new MinMaxStackQueue();
+
+  arr.forEach(ele => {
+    queue.enqueue(ele);
+
+    if (queue.max() - queue.min() > max || !max) {
+      max = queuw.max() - queue.min();
+    }
+
+    if (queue.size() >= w) queue.dequeue();
+  })
+
+  return max;
+};
