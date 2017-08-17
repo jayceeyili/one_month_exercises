@@ -28,5 +28,16 @@ const is_shuffle1 = (str1, str2, target) => {
 
 // with repeats:
 const is_shuffle = (str1, str2, target) => {
-  
+  if (!target) {
+    return !str1 && !str2;
+  }
+  if (str1[0] === target[0]) {
+    if (is_shuffle(str1.slice(1), str2, target.slice(1))) return true;
+  }
+  if (str2[0] === target[0]) {
+    if (is_shuffle(str1, str2.slice(1), target.slice(1))) return true;
+  }
+  return false;
 };
+
+console.log(is_shuffle('xxz', 'xxy', 'xxyxxz'));
