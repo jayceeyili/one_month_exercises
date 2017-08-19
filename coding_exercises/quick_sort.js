@@ -9,8 +9,12 @@ const quickSort = (arr, left, right) => {
 
     let index = partition(arr, left, right);
 
-    if (index - 1 > left) quickSort(arr, left, index - 1);
-    if (index < right) quickSort(arr, index, right);
+    if (index - 1 > left) {
+      quickSort(arr, left, index - 1);
+    }
+    if (right > index) {
+      quickSort(arr, index, right);
+    }
   }
 
   return arr;
