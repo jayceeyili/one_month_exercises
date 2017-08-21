@@ -35,3 +35,50 @@
   Solve it first by generating all psubstrings and picking the greatest (in Big-Oh, how many are there?).
   Next, improve your algorithm to do this in O(n) time.
 ***************************************************************************************************/
+
+const max_unique_psub = str => {
+  let conbins = combinations(str);
+  let max = null;
+  let result = null;
+
+  conbins.forEach(sub => {
+    if (checkOrder(sub)) {
+      let len = sub.length;
+      if (len > max || !max) {
+        max = len;
+        result = sub;
+      }
+    }
+  })
+
+  return result;
+};
+
+const combinations = str => {
+  let result = [];
+
+  const find = (prefix, chars) => {
+    for (let i = 0; i < chars.length; i++) {
+      let curr = prefix + chars[i];
+      result.push(curr);
+      find(curr , chars.slice(i + 1));
+    }
+  }
+
+  find('', str);
+
+  return result;
+}
+
+const checkOrder = str => {
+  for (let i = 1; i < str.length; i++) {
+    if (str[i] >= str[i - 1]) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+// console.log(combinations('abc'));
+console.log(max_unique_psub('abcdefedcbaz'));
