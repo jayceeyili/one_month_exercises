@@ -8,3 +8,33 @@
   Your first version may use O(n) memory.
   Next, write a version which uses O(1) memory; you'll probably need a different approach.
 ***************************************************************************************************/
+
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+const cyclic = first_link => {
+  let slow = first_link;
+  let fast = first_link;
+  let pause = true;
+
+  while (fast = fast.next) {
+    if (fast === slow) return true;
+
+    slow = pause ? slow : slow.next;
+    pause = !pause;
+  }
+
+  return false;
+};
+
+var nodeA = new Node('A');
+var nodeB = nodeA.next = new Node('B');
+var nodeC = nodeB.next = new Node('C');
+var nodeD = nodeC.next = new Node('D');
+var nodeE = nodeD.next = new Node('E');
+nodeE.next = nodeB;
+console.log(cyclic(nodeA));
