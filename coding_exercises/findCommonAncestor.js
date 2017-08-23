@@ -6,15 +6,15 @@
 const findCommonAncestor = (root, node1, node2) => {
   if (!root) return;
 
-  let val = root.value;
+  let rootVal = root.value;
   let val1 = node1.value;
   let val2 = node2.value;
 
-  if (val1 < val && val2 < val) {
+  if (val1 < rootVal && val2 < rootVal) {
     return findCommonAncestor(root.left, node1, node2);
   }
 
-  if (val1 > val && val2 > val) {
+  if (val1 > rootVal && val2 > rootVal) {
     return findCommonAncestor(root.right, node1, node2);
   }
 
