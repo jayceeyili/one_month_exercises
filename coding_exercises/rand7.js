@@ -7,7 +7,7 @@
 const gen5 = () => Math.floor(Math.random() * 6);
 
 const gen7 = () => {
-  let result = gen5() * gen5() + gen5();
+  let result = gen5() * 5 + gen5();
   if (result <= 21) return result % 7;
   return gen7();
 };
