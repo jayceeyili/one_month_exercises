@@ -54,7 +54,16 @@ class DoublyLinkedList {
   }
 
   push(val) {
-    
+    let node = new Node(val);
+    if (this.isEmpty()) {
+      this.head = this.tail = node;
+    } else {
+      node.prev = this.tail;
+      this.tail = node;
+      this.tail.prev.next = this.tail;
+    }
+
+    return this.tail;
   }
 
   pop() {
