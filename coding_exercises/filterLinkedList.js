@@ -81,7 +81,34 @@ class DoublyLinkedList {
     if (!this.isEmpty()) {
       let node = this.head;
       while (node) {
+
         if (node.value === val) {
+          if (node === this.head) {
+            this.head = this.head.next;
+            node.delete();
+            break;
+          } else if (node === this.tail) {
+            this.tail = this.tail.prev;
+            node.delete();
+            break;
+          } else {
+            node.delete();
+            break;
+          }
+        }
+
+        node = node.next;
+      }
+    }
+  }
+
+  filter(val) {
+    if (!this.isEmpty()) {
+      let node = this.head;
+
+      while (node) {
+
+        if (node.value === val){
           if (node === this.head) {
             this.head = this.head.next;
             node.delete();
@@ -92,14 +119,9 @@ class DoublyLinkedList {
             node.delete();
           }
         }
+
         node = node.next;
       }
-    }
-  }
-
-  filter(cb) {
-    if (!this.isEmpty()) {
-      
     }
   }
 
@@ -116,10 +138,12 @@ class DoublyLinkedList {
 
 let list = new DoublyLinkedList();
 list.push('one');
+list.push('three');
 list.push('two');
 list.push('three');
 list.push('four');
-list.remove('three');
+list.push('three');
+list.filter('three');
 list.remove('one');
 
 list.log();
