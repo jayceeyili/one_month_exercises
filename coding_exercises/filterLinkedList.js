@@ -67,14 +67,59 @@ class DoublyLinkedList {
   }
 
   pop() {
-
+    if (this.isEmpty()) {
+      return null;
+    } else {
+      let tail = this.tail;
+      this.tail = this.tail.prev;
+      tail.delete();
+      return tail.value;
+    }
   }
 
   remove(val) {
-
+    if (!this.isEmpty()) {
+      let node = this.head;
+      while (node) {
+        if (node.value === val) {
+          if (node === this.head) {
+            this.head = this.head.next;
+            node.delete();
+          } else if (node === this.tail) {
+            this.tail = this.tail.prev;
+            node.delete();
+          } else {
+            node.delete();
+          }
+        }
+        node = node.next;
+      }
+    }
   }
 
   filter(cb) {
+    if (!this.isEmpty()) {
+      
+    }
+  }
 
+  log() {
+    let node = this.head;
+    let result = [];
+    while (node) {
+      result.push(node.value);
+      node = node.next;
+    }
+    console.log(result);
   }
 }
+
+let list = new DoublyLinkedList();
+list.push('one');
+list.push('two');
+list.push('three');
+list.push('four');
+list.remove('three');
+list.remove('one');
+
+list.log();
