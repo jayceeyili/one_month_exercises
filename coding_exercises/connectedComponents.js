@@ -19,7 +19,16 @@ const connectedComponents = file => {
   let lines = record.split('\n').filter(e => e).map(e => e.split(' '));
   let vertexMap = {};
 
-  return lines;
+  lines.forEach(line => {
+    let v1 = line[0];
+    let v2 = line[1];
+    vertexMap[v1] = vertexMap[v1] || [];
+    vertexMap[v1].push(v2);
+    vertexMap[v2] = vertexMap[v2] || [];
+    vertexMap[v2].push(v1);
+  })
+
+  return vertexMap;
 };
 
 console.log(connectedComponents('/Users/yili/Desktop/10x_Club_Exercises/coding_exercises/testFile.txt'));
