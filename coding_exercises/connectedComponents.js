@@ -28,6 +28,8 @@ const connectedComponents = file => {
     vertexMap[v2].push(v1);
   })
 
+  
+
   return vertexMap;
 };
 
