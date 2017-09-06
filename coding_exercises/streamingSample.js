@@ -17,8 +17,10 @@ const streamSample = stream => {
   */
   let result;
   let count = 0;
+  let rand = Math.random();
+
   for (let key in stream) {
-    if (Math.random() < 1 / ++count) {
+    if (rand < 1 / ++count) {
       result = key;
     }
   }
