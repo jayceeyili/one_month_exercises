@@ -7,12 +7,12 @@
 
 const choose_a_record = hash => {
   let totleWeight = Object.values(hash).reduce((a, b) => a + b);
-  let count = 0;
+  let sum = 0;
   let rand = Math.random() * totleWeight;
 
   for (let key in hash) {
-    count += hash[key];
-    if (rand < count) {
+    sum += hash[key];
+    if (rand < sum) {
       return key;
     }
   }
