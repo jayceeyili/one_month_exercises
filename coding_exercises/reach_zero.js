@@ -5,3 +5,7 @@
   can move left or right for 3 posion; for left, it reaches 0, so return true;
   canWin([0, 2, 3, 5, 23], 2) => false; 2 => 3 => false;
 ***************************************************************************************************/
+
+const canWin = (arr, start) => {
+  
+};
