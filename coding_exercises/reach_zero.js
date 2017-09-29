@@ -12,5 +12,9 @@ const canWin = (arr, start, visited = {}) => {
 
   visited[start] = true;
 
-  
+  if (arr[start] === 0) return true;
+
+  if (start < 0) return canWin(arr, start + currVal, visited);
+  if (start > arr.length - 1) return canWin(arr, start - currVal, visited);
+
 };
