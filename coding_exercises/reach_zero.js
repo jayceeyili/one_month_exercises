@@ -7,5 +7,10 @@
 ***************************************************************************************************/
 
 const canWin = (arr, start, visited = {}) => {
+  let currVal = arr[start];
+  if (visited[start]) return false;
+
+  visited[start] = true;
+
   
 };
